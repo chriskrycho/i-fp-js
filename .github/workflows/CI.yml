@@ -62,15 +62,15 @@ jobs:
         # special nightly-only run that checks the *mainline* code and reports
         # on it, but new changes should never be allowed to fail against `next`.
         include:
-          - ember-try-scenario: '3.8'
+          - ts-version: '3.8'
             allow-failure: true
-          - ember-try-scenario: '3.9'
+          - ts-version: '3.9'
             allow-failure: true
-          - ember-try-scenario: '4.0'
+          - ts-version: '4.0'
             allow-failure: true
-          - ember-try-scenario: '4.1'
+          - ts-version: '4.1'
             allow-failure: true
-          - ember-try-scenario: 'next'
+          - ts-version: 'next'
             allow-failure: true
 
     steps:
