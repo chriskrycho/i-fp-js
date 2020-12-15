@@ -40,8 +40,8 @@
     "prepublishOnly": "yarn test && yarn build",
     "postpublish": "yarn clean",
     "preversion": "./scripts/build-docs && git add docs",
-    "test": "jest --config=config/jest.config.js && yarn lint",
-    "tdd": "jest --config=config/jest.config.js --watch"
+    "test": "jest",
+    "tdd": "jest --watch"
   },
   "files": [
     "*.d.ts",
@@ -69,6 +69,42 @@
   },
   "engines": {
     "node": "10.* || 12.* || >= 14.*"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/test/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/\\.node_modules/",
+      "src/index.ts",
+      "\\.+\\.d\\.ts"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "statements": 100,
+        "lines": 100
+      }
+    },
+    "globals": {
+      "ts-jest": {
+        "diagnostics": {
+          "ignoreCodes": [
+            151001
+          ]
+        }
+      }
+    }
   },
   "prettier": {
     "printWidth": 100,
