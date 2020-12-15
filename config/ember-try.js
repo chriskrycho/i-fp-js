@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  command: './node_modules/.bin/jest --config=./config/jest.config.js',
+  command: './node_modules/.bin/jest',
   scenarios: [
     {
       name: 'ts-3.6',
