@@ -55,7 +55,22 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ts-version: ['3.7']
+        ts-version: ['3.6', '3.7', '3.8', '3.9', '4.0', '4.1', 'next']
+        allow-failure: [false]
+        # Over time, this list *should* decrease down to none -- we'll set up a
+        # special nightly-only run that checks the *mainline* code and reports
+        # on it, but new changes should never be allowed to fail against `next`.
+        include:
+          - ember-try-scenario: '3.8'
+            allow-failure: true
+          - ember-try-scenario: '3.9'
+            allow-failure: true
+          - ember-try-scenario: '4.0'
+            allow-failure: true
+          - ember-try-scenario: '4.1'
+            allow-failure: true
+          - ember-try-scenario: 'next'
+            allow-failure: true
 
     steps:
       - uses: actions/checkout@v2

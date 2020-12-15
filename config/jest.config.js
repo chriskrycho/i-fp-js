@@ -159,7 +159,7 @@ module.exports = {
   // ],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
-  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
+  testRegex: [/\.test.ts/],
 
   // This option allows the use of a custom results processor
   // testResultsProcessor: undefined,
