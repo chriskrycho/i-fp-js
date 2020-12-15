@@ -51,27 +51,30 @@ jobs:
 
   tests_ts:
     needs: lint
-    name: 'Tests: Typescript ${{ matrix.ts-version }}'
+    name: 'Tests: TS ${{ matrix.ts-version }}'
     runs-on: ubuntu-latest
-    continue-on-error: ${{ matrix.allow-failure }}
+    continue-on-error: false
     strategy:
       matrix:
-        ts-version: ['3.6', '3.7']
-        allow-failure: [false]
+        ts-version: ['3.7']
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: volta-cli/action@v1
+      - run: yarn install --frozen-lockfile --non-interactive
+      - run: './node_modules/.bin/ember try:one ts-${{ matrix.ts-version }}'
+
+  tests_other_ts:
+    needs: lint
+    name: 'Tests: TS ${{ matrix.ts-version }} (allowed to fail)'
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      matrix:
         # Over time, this list *should* decrease down to none -- we'll set up a
         # special nightly-only run that checks the *mainline* code and reports
         # on it, but new changes should never be allowed to fail against `next`.
-        include:
-          - ts-version: '3.8'
-            allow-failure: true
-          - ts-version: '3.9'
-            allow-failure: true
-          - ts-version: '4.0'
-            allow-failure: true
-          - ts-version: '4.1'
-            allow-failure: true
-          - ts-version: 'next'
-            allow-failure: true
+        ts-version: ['3.6', '3.8', '3.9', '4.0', '4.1', 'next']
 
     steps:
       - uses: actions/checkout@v2
