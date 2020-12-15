@@ -76,6 +76,7 @@
     },
     "testRegex": "(/test/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "moduleFileExtensions": [
+      "js",
       "ts"
     ],
     "collectCoverage": true,
