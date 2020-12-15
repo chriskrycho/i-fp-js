@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  command: 'yarn jest',
+  command: './node_modules/.bin/jest --config=config/jest.config.js',
   scenarios: [
     {
       name: 'ts-3.7',
