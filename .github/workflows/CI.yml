@@ -53,9 +53,10 @@ jobs:
     needs: lint
     name: 'Tests: Typescript ${{ matrix.ts-version }}'
     runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.allow-failure }}
     strategy:
       matrix:
-        ts-version: ['3.6', '3.7', '3.8', '3.9', '4.0', '4.1', 'next']
+        ts-version: ['3.6', '3.7']
         allow-failure: [false]
         # Over time, this list *should* decrease down to none -- we'll set up a
         # special nightly-only run that checks the *mainline* code and reports
