@@ -1,0 +1,102 @@
+{
+  "name": "true-myth",
+  "description": "A library for safe functional programming in JavaScript, with first-class support for TypeScript and Flow",
+  "homepage": "https://true-myth.js.org",
+  "contributors": [
+    {
+      "name": "Chris Krycho",
+      "email": "hello@chriskrycho.com",
+      "url": "http://www.chriskrycho.com"
+    },
+    {
+      "name": "Ben Makuh"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/true-myth/true-myth"
+  },
+  "bugs": {
+    "url": "https://github.com/true-myth/true-myth/issues"
+  },
+  "version": "4.1.1",
+  "main": "dist/cjs/index.js",
+  "module": "dist/es/index.js",
+  "types": "index.d.ts",
+  "ember-addon": {
+    "main": "ember-addon.js"
+  },
+  "keywords": [
+    "ember-addon",
+    "typescript",
+    "functional programming",
+    "maybe",
+    "result"
+  ],
+  "scripts": {
+    "ts:cjs": "yarn tsc -p ts/cjs.tsconfig.json",
+    "ts:es": "yarn tsc -p ts/es.tsconfig.json",
+    "ts:typedefs": "yarn tsc -p ts/types.tsconfig.json && mv defs/* . && rmdir defs",
+    "ts:all": "yarn ts:cjs && yarn ts:es && yarn ts:typedefs",
+    "build": "yarn clean && yarn ts:all",
+    "clean": "rimraf ./*.d.ts ./*.d.ts.map dist",
+    "doc": "./scripts/build-docs",
+    "lint": "yarn eslint src/*.ts test/*.ts",
+    "prepublishOnly": "yarn test && yarn build",
+    "postpublish": "yarn clean",
+    "preversion": "./scripts/build-docs && git add docs",
+    "test": "jest",
+    "tdd": "jest --watch"
+  },
+  "files": [
+    "*.d.ts",
+    "*.d.ts.map",
+    "dist",
+    "src",
+    "ember-addon.js"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": "10.* || 12.* || >= 14.*"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "/test(\\/|\\\\).*\\.test\\.ts$",
+    "moduleFileExtensions": [
+      "js",
+      "ts"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/\\.node_modules/",
+      "src/index.ts",
+      "\\.+\\.d\\.ts"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "statements": 100,
+        "lines": 100
+      }
+    },
+    "globals": {
+      "ts-jest": {
+        "diagnostics": {
+          "ignoreCodes": [
+            151001
+          ]
+        }
+      }
+    }
+  },
+  "volta": {
+    "extends": "../../package.json"
+  }
+}

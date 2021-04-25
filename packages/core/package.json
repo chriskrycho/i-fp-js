@@ -1,0 +1,6 @@
+{
+  "name": "@true-myth/core",
+  "volta": {
+    "extends": "../../package.json"
+  }
+}

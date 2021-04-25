@@ -1,0 +1,6 @@
+{
+  "name": "@true-myth/toolbelt",
+  "volta": {
+    "extends": "../../package.json"
+  }
+}
